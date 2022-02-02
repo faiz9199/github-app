@@ -7,7 +7,7 @@ export const GithubProvider = ({ children }) => {
   const initialState = {
     users: [],
     user: {},
-    repos:[],
+    repos: [],
     loading: false,
   };
   const [state, dispatch] = useReducer(githubReducer, initialState);
@@ -21,12 +21,7 @@ export const GithubProvider = ({ children }) => {
     });
 
     const response = await fetch(
-      `${process.env.REACT_APP_GITHUB_URL}/search/users?${params}`,
-      {
-        headers: {
-          Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
-        },
-      }
+      `${process.env.REACT_APP_GITHUB_URL}/search/users?${params}`
     );
     const { items } = await response.json();
     dispatch({
@@ -40,12 +35,7 @@ export const GithubProvider = ({ children }) => {
     setLoading();
 
     const response = await fetch(
-      `${process.env.REACT_APP_GITHUB_URL}/users/${login}`,
-      {
-        headers: {
-          Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
-        },
-      }
+      `${process.env.REACT_APP_GITHUB_URL}/users/${login}`
     );
 
     if (response.status === 404) {
@@ -68,12 +58,7 @@ export const GithubProvider = ({ children }) => {
     });
 
     const response = await fetch(
-      `${process.env.REACT_APP_GITHUB_URL}/users/${login}/repos?${params}`,
-      {
-        headers: {
-          Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
-        },
-      }
+      `${process.env.REACT_APP_GITHUB_URL}/users/${login}/repos?${params}`
     );
     const data = await response.json();
     dispatch({
